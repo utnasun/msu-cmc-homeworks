@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #define mem 4
+
 char * last_substr(char * str, const char * substr);
 char * read_str(void);
 int main() {
