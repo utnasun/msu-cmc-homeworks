@@ -1,0 +1,25 @@
+program
+{
+    int a = -51, b = 6, c, t = 55, i = 0, k = 0;
+    string x = "abc", y, z = "kykyk";
+    bool flag = true;
+    y = x+z;
+    c = -a+6; /* c = 57 */
+    write(c);
+    a = b = c = a+b+c;
+    write(a+b,b,c);
+    write(y+z, flag, not flag);
+    while (not flag) {
+        write(c);
+    }
+    for(;;){
+        i = i+1;
+        if ( i == 1000 ){
+            write(i);
+            break;
+        }
+        else {;}
+    }
+    write(z);
+}
+
