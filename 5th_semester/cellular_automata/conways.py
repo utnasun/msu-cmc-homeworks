@@ -13,7 +13,7 @@ class GameOfLife:
             size: tp.Tuple[int, int],
             cell_size: int = 20,
             randomize: bool = True,
-            speed: int = 30
+            speed: int = 5
     ) -> None:
         # Размер клеточного поля
         self.rows, self.cols = size
@@ -60,7 +60,7 @@ class GameOfLife:
         for i in range(self.rows):
             for j in range(self.cols):
                 if self.curr_generation[i][j]:
-                    if sum(self.get_neighbours((i, j))) in [2, 3]:
+                    if sum(self.get_neighbours((i, j))) in [2, 4]:
                         new_greed[i][j] = random.randint(1, 2)
                 elif sum(self.get_neighbours((i, j))) == 3:
                     new_greed[i][j] = random.randint(1, 2)
@@ -111,9 +111,6 @@ class GameOfLife:
         pygame.display.set_caption("Game of Life")
         self.screen.fill(pygame.Color("white"))
 
-        # Создание списка клеток
-        # PUT YOUR CODE HERE
-
         running = True
         playing = False
         self.draw_grid()
@@ -139,5 +136,5 @@ class GameOfLife:
         pygame.quit()
 
 
-life = GameOfLife((24, 80), randomize=True)
+life = GameOfLife((36, 80), randomize=True)
 life.run()
