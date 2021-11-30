@@ -13,8 +13,7 @@ class GameOfLife:
             size: tp.Tuple[int, int],
             cell_size: int = 20,
             randomize: bool = True,
-            max_generations: tp.Optional[float] = float("inf"),
-            speed: int = 5
+            speed: int = 30
     ) -> None:
         # Размер клеточного поля
         self.rows, self.cols = size
@@ -22,8 +21,6 @@ class GameOfLife:
         self.prev_generation = self.create_grid()
         # Текущее поколение клеток
         self.curr_generation = self.create_grid(randomize=randomize)
-        # Максимальное число поколений
-        self.max_generations = max_generations
         # Текущее число поколений
         self.n_generation = 1
         self.cell_size = cell_size
@@ -74,13 +71,6 @@ class GameOfLife:
         self.curr_generation = self.get_next_generation()
         self.n_generation += 1
 
-    @property
-    def is_max_generations_exceed(self) -> bool:
-        if self.n_generation > self.max_generations:
-            return False
-        else:
-            return True
-
     def draw_lines(self) -> None:
         for x in range(0, self.cols):
             pygame.draw.line(self.screen, pygame.Color("black"), (x * self.cell_size, 0),
@@ -107,10 +97,12 @@ class GameOfLife:
 
     def colorize_cell(self, click_coords: (int, int)):
         j, i = click_coords[0] // self.cell_size, click_coords[1] // self.cell_size
-        if self.curr_generation[i][j]:
+        if self.curr_generation[i][j] == 2:
             self.curr_generation[i][j] = 0
-        else:
-            self.curr_generation[i][j] = random.randint(1, 2)
+        elif self.curr_generation[i][j] == 1:
+            self.curr_generation[i][j] = 2
+        elif self.curr_generation[i][j] == 0:
+            self.curr_generation[i][j] = 1
 
     def run(self) -> None:
         """ Запустить игру """
@@ -147,5 +139,5 @@ class GameOfLife:
         pygame.quit()
 
 
-life = GameOfLife((24, 80), randomize=True, max_generations=50)
+life = GameOfLife((24, 80), randomize=True)
 life.run()
