@@ -60,7 +60,7 @@ class GameOfLife:
         for i in range(self.rows):
             for j in range(self.cols):
                 if self.curr_generation[i][j]:
-                    if sum(self.get_neighbours((i, j))) in [2, 4]:
+                    if sum(self.get_neighbours((i, j))) in [2, 3]:
                         new_greed[i][j] = random.randint(1, 2)
                 elif sum(self.get_neighbours((i, j))) == 3:
                     new_greed[i][j] = random.randint(1, 2)
